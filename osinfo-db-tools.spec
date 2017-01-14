@@ -18,6 +18,7 @@ BuildRequires:	libxml2-devel >= 1:2.6.0
 BuildRequires:	libxslt-devel >= 1.0.0
 BuildRequires:	pkgconfig
 BuildRequires:	xz
+Conflicts:	libosinfo < 1.0.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
