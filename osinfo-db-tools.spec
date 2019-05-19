@@ -1,18 +1,18 @@
 Summary:	Tools for managing the osinfo database
 Summary(pl.UTF-8):	Narzędzia do zarządzania bazą danych osinfo
 Name:		osinfo-db-tools
-Version:	1.1.0
+Version:	1.5.0
 Release:	1
 License:	GPL v2+
 Group:		Applications/File
 Source0:	https://releases.pagure.org/libosinfo/%{name}-%{version}.tar.gz
-# Source0-md5:	5b346d7e361a7f510aa62da923cbdd8b
+# Source0-md5:	b599f5eb4545ff84e1d6cba01bfe800f
 URL:		https://libosinfo.org/
 BuildRequires:	autoconf >= 2.61
 BuildRequires:	automake >= 1:1.11.1
+BuildRequires:	gettext-tools >= 0.19.8
 BuildRequires:	glib2-devel >= 1:2.36.0
-BuildRequires:	gnome-common
-BuildRequires:	intltool >= 0.40.0
+BuildRequires:	json-glib-devel
 BuildRequires:	libarchive-devel >= 3.0.0
 BuildRequires:	libtool >= 2:2
 BuildRequires:	libxml2-devel >= 1:2.6.0
@@ -39,10 +39,10 @@ wykorzystania przy wirtualizacji.
 %setup -q
 
 %build
-%{__intltoolize}
 %{__libtoolize}
 %{__aclocal} -I m4
 %{__autoconf}
+%{__autoheader}
 %{__automake}
 %configure \
 	--disable-silent-rules
