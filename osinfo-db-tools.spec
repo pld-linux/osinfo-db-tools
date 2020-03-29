@@ -1,24 +1,24 @@
 Summary:	Tools for managing the osinfo database
 Summary(pl.UTF-8):	Narzędzia do zarządzania bazą danych osinfo
 Name:		osinfo-db-tools
-Version:	1.6.0
+Version:	1.7.0
 Release:	1
 License:	GPL v2+
 Group:		Applications/File
-Source0:	https://releases.pagure.org/libosinfo/%{name}-%{version}.tar.gz
-# Source0-md5:	edfb599f960161d348c67f3261627136
+Source0:	https://releases.pagure.org/libosinfo/%{name}-%{version}.tar.xz
+# Source0-md5:	7b8ccf24094ca8cdf67987096d357426
 URL:		https://libosinfo.org/
-BuildRequires:	autoconf >= 2.61
-BuildRequires:	automake >= 1:1.11.1
 BuildRequires:	gettext-tools >= 0.19.8
 BuildRequires:	glib2-devel >= 1:2.44
 BuildRequires:	json-glib-devel
 BuildRequires:	libarchive-devel >= 3.0.0
 BuildRequires:	libsoup-devel >= 2.4
-BuildRequires:	libtool >= 2:2
 BuildRequires:	libxml2-devel >= 1:2.6.0
-BuildRequires:	libxslt-devel >= 1.0.0
+BuildRequires:	meson >= 0.49.0
+BuildRequires:	ninja >= 1.5
 BuildRequires:	pkgconfig
+BuildRequires:	rpmbuild(macros) >= 1.736
+BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
 Requires:	glib2 >= 1:2.44
 Requires:	libarchive >= 3.0.0
@@ -40,20 +40,14 @@ wykorzystania przy wirtualizacji.
 %setup -q
 
 %build
-%{__libtoolize}
-%{__aclocal} -I m4
-%{__autoconf}
-%{__autoheader}
-%{__automake}
-%configure \
-	--disable-silent-rules
-%{__make}
+%meson build
+
+%ninja_build -C build
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT
+%ninja_install -C build
 
 # not supported by glibc
 %{__rm} -r $RPM_BUILD_ROOT%{_localedir}/{bal,ilo,kw@kkcor,kw@uccor,wba}
@@ -65,7 +59,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc AUTHORS ChangeLog NEWS README docs/*.txt
+%doc NEWS README docs/*.txt
 %attr(755,root,root) %{_bindir}/osinfo-db-export
 %attr(755,root,root) %{_bindir}/osinfo-db-import
 %attr(755,root,root) %{_bindir}/osinfo-db-path
