@@ -49,6 +49,8 @@ rm -rf $RPM_BUILD_ROOT
 
 %ninja_install -C build
 
+%{__mv} $RPM_BUILD_ROOT%{_localedir}/{pt_PT,pt}
+
 %find_lang %{name}
 
 %clean
