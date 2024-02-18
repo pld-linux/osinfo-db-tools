@@ -1,12 +1,12 @@
 Summary:	Tools for managing the osinfo database
 Summary(pl.UTF-8):	Narzędzia do zarządzania bazą danych osinfo
 Name:		osinfo-db-tools
-Version:	1.10.0
+Version:	1.11.0
 Release:	1
 License:	GPL v2+
 Group:		Applications/File
 Source0:	https://releases.pagure.org/libosinfo/%{name}-%{version}.tar.xz
-# Source0-md5:	f0c83772ce612b5d0befb77a8d6f309b
+# Source0-md5:	8fed1cfc692b6fa1a80f002b0a8447ac
 URL:		https://libosinfo.org/
 BuildRequires:	gettext-tools >= 0.19.8
 BuildRequires:	glib2-devel >= 1:2.44
